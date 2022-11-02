@@ -16,16 +16,16 @@ resource "aws_emr_cluster" "emr_cluster" {
 
   master_instance_group {
     instance_type = "m5.xlarge"
-    bid_price     = 0.04
+    name = "Master - 1"
   }
 
   core_instance_group {
     instance_type  = "m5.xlarge"
     instance_count = 1
-    bid_price      = 0.04
+    name           = "Core - 2"
   }
 
-  name = "cluster-spark-desafio-modulo-1"
+  name = "cluster-spark-desafio-modulo-1-v2"
 
   termination_protection = false
 
@@ -34,9 +34,15 @@ resource "aws_emr_cluster" "emr_cluster" {
     "CURSO" = "EDC"
   }
 
-  service_role = var.emr_service_role
+  service_role = "EMR_DefaultRole"
 
   ec2_attributes {
-    instance_profile = var.emr_ec2_instance_profile
+    instance_profile = "EMR_EC2_DefaultRole"
   }
+
+  autoscaling_role = "EMR_AutoScaling_DefaultRole"
+
+  ebs_root_volume_size = 10
+
+  log_uri = var.emr_log_uri
 }
