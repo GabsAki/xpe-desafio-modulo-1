@@ -5,3 +5,4 @@ terraform/.terraform*
 terraform/terraform.tfstate*
 terraform/tf.env
 .env
+*__pycache__
