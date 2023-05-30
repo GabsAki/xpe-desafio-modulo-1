@@ -1,8 +1,15 @@
+# Script to transform the data extracted from rais with Spark.
+
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
+
+# This needs to be changed to the correct name of the bucket.
+# Using an environment variable here would add some complexity as this script needs to be uploaded to EMR or Glue.
+s3_bucket_name = "s3_bucket_name"
+
 rais = spark.read.csv(
-    "s3://desafio-modulo-1-850900288339/zona_raw/rais/",
+    f"s3://{s3_bucket_name}/zona_raw/rais/",
     inferSchema=True,
     header=True,
     sep=";",
@@ -145,5 +152,5 @@ rais = (
     .write.mode("overwrite")
     .partitionBy("uf")
     .format("parquet")
-    .save("s3://desafio-modulo-1-850900288339/zona_staging/rais/")
+    .save(f"s3://{s3_bucket_name}/zona_staging/rais/")
 )
