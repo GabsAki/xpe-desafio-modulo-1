@@ -3,3 +3,5 @@ variable "emr_log_uri" {
 }
 
 variable BUCKET_NAME {default = ""}
+
+variable PROFILE_NAME {default = ""}

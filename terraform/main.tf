@@ -1,4 +1,4 @@
 provider "aws" {
   region = "us-east-2"
-  profile = "gabs_limited"
+  profile = var.PROFILE_NAME
 }

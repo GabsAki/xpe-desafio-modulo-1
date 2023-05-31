@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "desafio-modulo-1-850900288339"
+  bucket = var.BUCKET_NAME
   tags = {
     IES = "IGTE"
     CURSO = "EDC"
