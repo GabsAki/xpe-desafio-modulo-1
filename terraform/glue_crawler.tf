@@ -5,7 +5,7 @@ resource "aws_glue_crawler" "glue_crawler" {
 
   s3_target {
     exclusions = []
-    path = "s3://desafio-modulo-1-850900288339/zona_staging/rais/"
+    path = "s3://${var.BUCKET_NAME}/zona_staging/rais/"
   }
 
   tags = {
